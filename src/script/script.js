@@ -42,19 +42,31 @@ const showStock = (data) => {
     } else {
         // make elements to pu into document
         let div = document.createElement("div");
+        let d = new Date(data['Meta Data']['3. Last Refreshed']);
+        let month = d.getMonth() + 1
+        if (month < 10) 
+        {
+            month = "0" + (d.getMonth() + 1);
+        }
+        let day = d.getDate();
+        if (day < 10)
+        {
+            day = "0" + d.getDay();
+        }
 
         let date = document.createElement("p");
+        let dateText = d.getFullYear() + "-" + month + "-" + day;
         date.appendChild(document.createTextNode("Last Refreshed: " + data['Meta Data']['3. Last Refreshed']));
         let symbol = document.createElement("p");
         symbol.appendChild(document.createTextNode("Symbol: " + data['Meta Data']['2. Symbol']));
         let open = document.createElement("p");
-        open.appendChild(document.createTextNode("Open Price: $" + data['Time Series (Daily)'][data['Meta Data']['3. Last Refreshed']]['1. open']));
+        open.appendChild(document.createTextNode("Open Price: $" + data['Time Series (Daily)'][dateText]['1. open']));
         let high = document.createElement("p");
-        high.appendChild(document.createTextNode("Highest Price: $" + data['Time Series (Daily)'][data['Meta Data']['3. Last Refreshed']]['2. high']))
+        high.appendChild(document.createTextNode("Highest Price: $" + data['Time Series (Daily)'][dateText]['2. high']))
         let low = document.createElement("p");
-        low.appendChild(document.createTextNode("Lowest Price: $" + data['Time Series (Daily)'][data['Meta Data']['3. Last Refreshed']]['3. low']))
+        low.appendChild(document.createTextNode("Lowest Price: $" + data['Time Series (Daily)'][dateText]['3. low']))
         let close = document.createElement("p");
-        close.appendChild(document.createTextNode("Closes at: $" + data['Time Series (Daily)'][data['Meta Data']['3. Last Refreshed']]['4. close']))
+        close.appendChild(document.createTextNode("Closes at: $" + data['Time Series (Daily)'][dateText]['4. close']))
 
         div.appendChild(date);
         div.appendChild(symbol);
