@@ -9,6 +9,8 @@
 // const section = showStock(context);
 // const populate = getStock(section);
 
+// Make these (^) into classes and not functions. Misunderstood.
+
 
 document.querySelector(".assignment").addEventListener("submit", (event) => {
     event.preventDefault();
